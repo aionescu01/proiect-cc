@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8c83738-7cd6-44a1-ab88-c267000e4ffb" name="Changes" comment="" />
+    <list default="true" id="a8c83738-7cd6-44a1-ab88-c267000e4ffb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/Cloud_computing.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth_service/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budget_service/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transaction_service/app.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,30 +53,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Flask server.Cloud_computing.executor&quot;: &quot;Run&quot;,
-    &quot;Flask server.Flask (auth.py).executor&quot;: &quot;Run&quot;,
-    &quot;Flask server.Flask (transaction.py).executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/alexa/Desktop/Cloud_computing/transaction_service&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Flask server.Cloud_computing.executor": "Run",
+    "Flask server.Flask (auth.py).executor": "Run",
+    "Flask server.Flask (transaction.py).executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/alexa/Desktop/proiect_cloud_computing_oldfiles/Cloud_computing 2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\alexa\Desktop\Cloud_computing\transaction_service" />
       <recent name="C:\Users\alexa\Desktop\Cloud_computing\budget_service" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\alexa\Desktop\proiect_cloud_computing_oldfiles\Cloud_computing 1" />
       <recent name="C:\Users\alexa\Desktop\Cloud_computing\budget_service" />
       <recent name="C:\Users\alexa\Desktop\Cloud_computing\transaction_service" />
       <recent name="C:\Users\alexa\Desktop\Cloud_computing\auth_service" />
@@ -88,9 +98,9 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="Flask (auth.py)" type="Python.FlaskServer" temporary="true" nameIsGenerated="true">
+    <configuration name="Flask (auth_service/app.py)" type="Python.FlaskServer" temporary="true" nameIsGenerated="true">
       <module name="Cloud_computing" />
-      <option name="target" value="$PROJECT_DIR$/auth.py" />
+      <option name="target" value="$PROJECT_DIR$/auth_service/app.py" />
       <option name="targetType" value="PATH" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -104,7 +114,7 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="Flask" type="Python.FlaskServer" temporary="true" nameIsGenerated="true">
+    <configuration name="Flask (transaction_service/app.py)" type="Python.FlaskServer" temporary="true" nameIsGenerated="true">
       <module name="Cloud_computing" />
       <option name="target" value="$PROJECT_DIR$/transaction_service/app.py" />
       <option name="targetType" value="PATH" />
@@ -123,7 +133,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Flask server.Flask (transaction_service/app.py)" />
-        <item itemvalue="Flask server.Flask (auth.py)" />
+        <item itemvalue="Flask server.Flask (auth_service/app.py)" />
       </list>
     </recent_temporary>
   </component>
@@ -146,7 +156,7 @@
       <workItem from="1733772944196" duration="23507000" />
       <workItem from="1733929642877" duration="1883000" />
       <workItem from="1733952340981" duration="1497000" />
-      <workItem from="1734102531304" duration="137000" />
+      <workItem from="1735931354185" duration="1544000" />
     </task>
     <servers />
   </component>
