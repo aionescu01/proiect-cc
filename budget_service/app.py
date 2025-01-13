@@ -21,10 +21,14 @@ class Budget(db.Model):
 @app.route('/budgets', methods=['POST'])
 #@jwt_required()
 def add_budget_limit():
+    """
+    Adds a new budget limit for a category.
+    """
     # user_id = get_jwt_identity()
     user_id = 1
     data = request.json
 
+    # Validate input
     category = data.get('category')
     limit_sum = data.get('limit_sum')
     alert_threshold = data.get('alert_threshold', 0.9)  # Default to 90%
@@ -32,6 +36,12 @@ def add_budget_limit():
     if not category or not limit_sum:
         return jsonify({'message': 'Category and limit are required'}), 400
 
+    # Check if the budget for the category already exists
+#    existing_budget = Budget.query.filter_by(user_id=user_id, category=category).first()
+#    if existing_budget:
+#        return jsonify({'message': 'Budget for this category already exists'}), 400
+
+    # Create and save the new budget
     new_budget = Budget(user_id=user_id, category=category, limit_sum=limit_sum, alert_threshold=alert_threshold)
     db.session.add(new_budget)
     db.session.commit()
@@ -49,6 +59,9 @@ def add_budget_limit():
 @app.route('/budgets', methods=['GET'])
 #@jwt_required()
 def get_budget_limits():
+    """
+    Retrieves all budget limits for the logged-in user.
+    """
     # user_id = get_jwt_identity()
     user_id = 1
 
@@ -69,6 +82,7 @@ def get_budget_limits():
 @app.route('/check-limit', methods=['POST'])
 #@jwt_required()
 def check_limit():
+    """Check if a transaction exceeds the budget limit."""
     data = request.json
     # user_id = get_jwt_identity()
     user_id = 1

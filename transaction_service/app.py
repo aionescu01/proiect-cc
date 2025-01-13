@@ -36,6 +36,7 @@ def add_transaction():
         date=data['date'],
         description=data.get('description', '')
     )
+
     response = requests.get(
         f'{BUDGET_SERVICE_URL}/getlimit',
         json={'category': data['category']},

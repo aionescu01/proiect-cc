@@ -7,14 +7,19 @@
     <list default="true" id="a8c83738-7cd6-44a1-ab88-c267000e4ffb" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/Cloud_computing.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth_service/Dockerfile" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/auth_service/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth_service/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budget_service/Dockerfile" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/budget_service/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budget_service/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transaction_service/Dockerfile" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/transaction_service/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transaction_service/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,23 +58,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Flask server.Cloud_computing.executor": "Run",
-    "Flask server.Flask (auth.py).executor": "Run",
-    "Flask server.Flask (transaction.py).executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/alexa/Desktop/proiect_cloud_computing_oldfiles/Cloud_computing 2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Flask server.Cloud_computing.executor&quot;: &quot;Run&quot;,
+    &quot;Flask server.Flask (auth.py).executor&quot;: &quot;Run&quot;,
+    &quot;Flask server.Flask (transaction.py).executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/alexa/Desktop/Cloud_computing/transaction_service&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\alexa\Desktop\Cloud_computing\transaction_service" />
@@ -156,7 +161,6 @@
       <workItem from="1733772944196" duration="23507000" />
       <workItem from="1733929642877" duration="1883000" />
       <workItem from="1733952340981" duration="1497000" />
-      <workItem from="1735931354185" duration="1544000" />
     </task>
     <servers />
   </component>
