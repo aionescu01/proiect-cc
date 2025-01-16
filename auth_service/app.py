@@ -1,12 +1,15 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin@localhost:5432/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://auth_user:auth_password@auth-db:5432/auth_db'
+
 app.config['JWT_SECRET_KEY'] = 'your_secret_key'
 db = SQLAlchemy(app)
 jwt = JWTManager(app)
+CORS(app)
 
 class User(db.Model):
     __tablename__ = 'users'

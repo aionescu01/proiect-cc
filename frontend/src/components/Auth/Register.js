@@ -1,14 +1,16 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { registerUser } from '../../services/authService';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const { register, handleSubmit } = useForm();
-  
+    const navigate = useNavigate();
     const onSubmit = async (data) => {
       try {
         await registerUser(data);
         alert('Registration successful');
+        navigate('/login');
       } catch (error) {
         console.error(error);
         alert('Error registering user');

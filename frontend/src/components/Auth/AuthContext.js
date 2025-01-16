@@ -21,11 +21,11 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (credentials) => {
-    return authLogin(credentials, updatelogin); // Pass the update function
+    return authLogin(credentials, updatelogin); 
   };
 
   const logout = () => {
-    authLogout(updatelogout); // Pass the update function
+    authLogout(updatelogout); 
   };
 
   return (

@@ -1,13 +1,14 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
-from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin@localhost:5432/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://budget_user:budget_password@budget-db:5432/budget_db'
 app.config['JWT_SECRET_KEY'] = 'your_secret_key'
 db = SQLAlchemy(app)
 jwt = JWTManager(app)
+CORS(app)
 
 class Budget(db.Model):
     __tablename__ = 'budgets'
@@ -19,16 +20,11 @@ class Budget(db.Model):
 
 
 @app.route('/budgets', methods=['POST'])
-#@jwt_required()
+@jwt_required()
 def add_budget_limit():
-    """
-    Adds a new budget limit for a category.
-    """
-    # user_id = get_jwt_identity()
-    user_id = 1
+    user_id = get_jwt_identity()
     data = request.json
 
-    # Validate input
     category = data.get('category')
     limit_sum = data.get('limit_sum')
     alert_threshold = data.get('alert_threshold', 0.9)  # Default to 90%
@@ -36,12 +32,6 @@ def add_budget_limit():
     if not category or not limit_sum:
         return jsonify({'message': 'Category and limit are required'}), 400
 
-    # Check if the budget for the category already exists
-#    existing_budget = Budget.query.filter_by(user_id=user_id, category=category).first()
-#    if existing_budget:
-#        return jsonify({'message': 'Budget for this category already exists'}), 400
-
-    # Create and save the new budget
     new_budget = Budget(user_id=user_id, category=category, limit_sum=limit_sum, alert_threshold=alert_threshold)
     db.session.add(new_budget)
     db.session.commit()
@@ -57,13 +47,9 @@ def add_budget_limit():
     }), 201
 
 @app.route('/budgets', methods=['GET'])
-#@jwt_required()
+@jwt_required()
 def get_budget_limits():
-    """
-    Retrieves all budget limits for the logged-in user.
-    """
-    # user_id = get_jwt_identity()
-    user_id = 1
+    user_id = get_jwt_identity()
 
     budgets = Budget.query.filter_by(user_id=user_id).all()
 
@@ -79,37 +65,12 @@ def get_budget_limits():
         'budgets': budget_list
     }), 200
 
-@app.route('/check-limit', methods=['POST'])
-#@jwt_required()
-def check_limit():
-    """Check if a transaction exceeds the budget limit."""
-    data = request.json
-    # user_id = get_jwt_identity()
-    user_id = 1
-    category = data.get('category')
-    amount = data.get('amount')
-
-    if not category or not amount:
-        return jsonify({'error': 'Category and amount are required'}), 400
-
-    budget = Budget.query.filter_by(user_id=user_id, category=category).first()
-    if not budget:
-        return jsonify({'error': 'No budget found for this category'}), 404
-
-    total_spent = budget.get_total_spent()  # Assuming this method exists
-    if total_spent + amount > budget.limit_sum:
-        return jsonify({'status': 'exceeded', 'limit': budget.limit_sum}), 200
-    elif total_spent + amount > budget.limit_sum * budget.alert_threshold:
-        return jsonify({'status': 'near_limit', 'limit': budget.limit_sum}), 200
-    else:
-        return jsonify({'status': 'within_limit', 'limit': budget.limit_sum}), 200
-
 @app.route('/getlimit', methods=['GET'])
-#@jwt_required()
+@jwt_required()
 def get_limit():
     data = request.json
-    # user_id = get_jwt_identity()
-    user_id = 1
+    user_id = get_jwt_identity()
+    #user_id = 1
     category = data.get('category')
 
     if not category:
@@ -120,6 +81,48 @@ def get_limit():
         return jsonify({'error': 'No budget found for this category'}), 404
 
     return jsonify({'alert_threshold': budget.alert_threshold, 'limit': budget.limit_sum}), 200
+
+@app.route('/budgets/<int:budget_id>', methods=['GET'])
+@jwt_required()
+def get_budget_by_id(budget_id):
+    user_id = get_jwt_identity()
+    budget = Budget.query.filter_by(id=budget_id, user_id=user_id).first()
+    if not budget:
+        return jsonify({'message': 'Budget not found'}), 404
+    return jsonify({
+        'id': budget.id,
+        'category': budget.category,
+        'limit': budget.limit_sum,
+        'alert_threshold': budget.alert_threshold
+    })
+
+@app.route('/budgets/<int:budget_id>', methods=['PUT'])
+@jwt_required()
+def update_budget_by_id(budget_id):
+    user_id = get_jwt_identity()
+    data = request.json
+    budget = Budget.query.filter_by(id=budget_id, user_id=user_id).first()
+    if not budget:
+        return jsonify({'message': 'Budget not found'}), 404
+
+    budget.category = data.get('category', budget.category)
+    budget.limit_sum = data.get('limit', budget.limit_sum)
+    db.session.commit()
+
+    return jsonify({'message': 'Budget updated successfully'})
+
+@app.route('/budgets/<int:budget_id>', methods=['DELETE'])
+@jwt_required()
+def delete_budget_by_id(budget_id):
+    user_id = get_jwt_identity()
+    budget = Budget.query.filter_by(id=budget_id, user_id=user_id).first()
+    if not budget:
+        return jsonify({'message': 'Budget not found'}), 404
+
+    db.session.delete(budget)
+    db.session.commit()
+
+    return jsonify({'message': 'Budget deleted successfully'})
 
 if __name__ == '__main__':
     app.run(port=5003, host="0.0.0.0")

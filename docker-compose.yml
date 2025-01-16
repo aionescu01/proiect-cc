@@ -6,8 +6,9 @@ services:
       - "5002:5002"
     environment:
       - JWT_SECRET_KEY=your_secret_key
+      - JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(days=7)
     depends_on:
-      - db
+      - auth-db
 
   transaction_service:
     build:
@@ -16,9 +17,10 @@ services:
       - "5001:5001"
     environment:
       - JWT_SECRET_KEY=your_secret_key
+      - JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(days=7)
       - BUDGET_SERVICE_URL=http://budget_service:5003
     depends_on:
-      - db
+      - transaction-db
       - budget_service
 
   budget_service:
@@ -28,19 +30,56 @@ services:
       - "5003:5003"
     environment:
       - JWT_SECRET_KEY=your_secret_key
+      - JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(days=7)
     depends_on:
-      - db
+      - budget-db
 
-  db:
-    image: postgres:15
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: postgres
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
     ports:
-      - "5432:5432"
+      - "3000:3000"
+    depends_on:
+      - auth_service
+      - transaction_service
+      - budget_service
+
+  auth-db:
+    image: postgres:15
+    container_name: auth-db
+    environment:
+      POSTGRES_USER: auth_user
+      POSTGRES_PASSWORD: auth_password
+      POSTGRES_DB: auth_db
+    ports:
+      - "5433:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./auth-db-init.sql:/docker-entrypoint-initdb.d/init-database.sql
+
+  transaction-db:
+    image: postgres:15
+    container_name: transaction-db
+    environment:
+      POSTGRES_USER: transaction_user
+      POSTGRES_PASSWORD: transaction_password
+      POSTGRES_DB: transaction_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - ./transaction-db-init.sql:/docker-entrypoint-initdb.d/init-database.sql
+
+  budget-db:
+    image: postgres:15
+    container_name: budget-db
+    environment:
+      POSTGRES_USER: budget_user
+      POSTGRES_PASSWORD: budget_password
+      POSTGRES_DB: budget_db
+    ports:
+      - "5435:5432"
+    volumes:
+      - ./budget-db-init.sql:/docker-entrypoint-initdb.d/init-database.sql
 
 volumes:
   postgres_data:
